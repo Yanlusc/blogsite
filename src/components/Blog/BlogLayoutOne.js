@@ -24,7 +24,7 @@ const BlogLayoutOne = ({blog}) => {
                     <h2 className='font-bold capitalize  md:text-2xl text-light'>
                                 <span className='bg-gradient-to-r from-accent to-accent
                                  bg-[length:0px_6px]
-                                hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 '>
+                                group-hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 '>
                                 {blog.title}
                                 </span>
                     </h2>

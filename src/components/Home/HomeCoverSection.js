@@ -1,8 +1,7 @@
 import React from "react";
 import {sortBlog} from "@/src/utils";
 import Image from "next/image";
-import Link from "next/link";
-import {Noto_Sans_Tagalog} from "next/dist/compiled/@next/font/dist/google";
+
 import {Tag} from "@/src/components/Elements/Tag";
 
 const HomeCoverSection = ({blogs}) => {
