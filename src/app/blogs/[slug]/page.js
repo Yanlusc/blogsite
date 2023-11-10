@@ -3,6 +3,7 @@ import {Tag} from "@/src/components/Elements/Tag";
 import Image from "next/image";
 import React from "react";
 import {BlogDetails} from "@/src/components/Blog/BlogDetails";
+import {RenderMdx} from "@/src/components/Blog/RenderMdx";
 
 export default function BlogPage({params}) {
 
@@ -32,6 +33,30 @@ export default function BlogPage({params}) {
                        "/>
             </div>
             <BlogDetails blog={blog} slug={params.slug}/>
+
+            <div className=" grid grid-cols-12 gap-16 mt-8 px-10 ">
+                <div className="col-span-4">
+                    <details>
+                        <summary>
+                            Table of content
+                        </summary>
+                    </details>
+                    <ul>
+                        {blog.toc.map((heading, key) => {
+                            return(
+                                    <li key={key}>
+                                        <a href="http://example.com" >
+                                            <span>{heading.text}</span>
+                                        </a>
+                                    </li>)
+
+                        })
+                        }
+                    </ul>
+                </div>
+                <RenderMdx blog={blog}/>
+
+            </div>
         </article>
     )
 }
