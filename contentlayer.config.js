@@ -1,11 +1,12 @@
 import {makeSource, defineDocumentType} from '@contentlayer/source-files'
 import readingTime from "reading-time";
-import remarkGfm from 'https://esm.sh'
+
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 
 import GitHubSlugger from "github-slugger"
+import remarkGfm from "remark-gfm";
 
 
 const Blog = defineDocumentType(() => ({
@@ -93,6 +94,6 @@ export default makeSource({
     /* options */
     contentDirPath: "content",
     documentTypes: [Blog],
-    /*it doesn't work*/
+
     mdx: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {behavior: "append"}]] }
 });

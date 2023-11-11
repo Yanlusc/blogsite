@@ -1,8 +1,9 @@
 import {format, parseISO} from "date-fns";
 import Link from "next/link";
+import {slug} from "github-slugger";
 
 
-export const BlogDetails = ({blog, slug}) =>{
+export const BlogDetails = ({blog, slug: blogSlug}) =>{
     console.log(blog);
     return (
         <div className="px-10 bg-accent text-light py-2 flex items-center justify-around
@@ -12,7 +13,7 @@ export const BlogDetails = ({blog, slug}) =>{
             </time>
             <span> 10 views</span>
             <div>{blog.readingTime.text}</div>
-            <Link href={`/categories/${blog.tags[0]}`}>
+            <Link href={`/categories/${slug(blog.tags[0])}`}>
                 #{blog.tags[0]}
 
             </Link>
