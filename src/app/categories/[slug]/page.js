@@ -1,7 +1,32 @@
 import {allBlogs} from "contentlayer/generated";
-import {slug} from "github-slugger";
+import GitHubSlugger, {slug} from "github-slugger";
 import Categories from "@/src/components/Blog/Categories";
 import BlogLayoutThree from "@/src/components/Blog/BlogLayoutThree";
+import blogLayoutThree from "@/src/components/Blog/BlogLayoutThree";
+
+
+const slugger = new GitHubSlugger();
+
+export async function generateStaticParams() {
+    const categories = []
+    const paths = [{slug: "all"}]
+
+    allBlogs.map(blog =>{
+        if(blog.isPublished){
+            blog.tags.map(tag => {
+                    let slugified = slugger.slug(tag);
+                    if(!categories.includes(slugified)){
+                        categories.push(slugified)
+                        paths.push({slug:slugified})
+                    }
+
+                }
+            )
+        }
+    } )
+    return paths;
+}
+
 
 
 const CategoryPage = ({params}) =>{
@@ -20,12 +45,12 @@ const CategoryPage = ({params}) =>{
         })
     })
 
-    return <article>
-        <div>
-            <h1>
+    return <article className="mt-12 flex flex-col text-dark">
+        <div className="px-32 flex flex-col">
+            <h1 className="mt-6 font-semibold text-5xl ">
                 #{params.slug}
             </h1>
-            <span>
+            <span className="mt-2 inline-block">
                 Discover more categories and expand your knowledge
             </span>
         </div>
